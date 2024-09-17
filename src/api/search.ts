@@ -14,7 +14,6 @@ export const searchQuery = async (query: string | number | null): Promise<any> =
   return await response.json();
 }
 
-
 // Fetch quote of stock
 export const searchQuote = async (stockSymbol: string) => {
   const url = `${basePath}/quote?symbol=${stockSymbol}&token=${process.env.API_KEY}`;

@@ -6,14 +6,10 @@ type HeaderProps = {
 }
 
 const Header: React.FC<HeaderProps> = ({ name }) => {
-  if (!name) {
-    return null
-  }
-  
   return (
     <>
       <div className="text-gray-900">
-        <h1 className="text-5xl">{name}</h1>
+        {name && <h1 className="text-5xl">{name}</h1>}
         <Search />
       </div>
     </>

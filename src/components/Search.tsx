@@ -22,6 +22,8 @@ const Search = () => {
     setValue('')
     setchMatches([])
   }, [value, matches])
+
+  // appends a new query to existing query
   const createQueryString = useCallback(
     (name: string, value: string) => {
       const params = new URLSearchParams(searchParams.toString())
@@ -33,9 +35,9 @@ const Search = () => {
   )
 
   const handleSetSymbol = useCallback((symbol: string) => {
-
     const queryString = createQueryString('symbol', symbol);
     clear()
+    // add symbol to query params to update stock details/quote in main page
     router.push(`${pathname}?${queryString.toString()}`)
   }, [router, pathname])
   

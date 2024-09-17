@@ -12,6 +12,8 @@ export default function Home() {
   const stockSymbol = useMemo(() => searchParams.get('symbol'), [searchParams])
   const [quote, setQuote] = useState<Quote>({} as Quote);
   const [stockDetails, setStockDetails] = useState<StockDetails>({} as StockDetails)
+  
+  // updates stock details when stock symbol changes via query params
   useEffect(() => {
     if (stockSymbol) {
       const updateQuoute = async () => {
