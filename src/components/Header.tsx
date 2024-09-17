@@ -6,6 +6,10 @@ type HeaderProps = {
 }
 
 const Header: React.FC<HeaderProps> = ({ name }) => {
+  if (!name) {
+    return null
+  }
+  
   return (
     <>
       <div className="text-gray-900">

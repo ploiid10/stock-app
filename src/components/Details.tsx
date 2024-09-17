@@ -15,6 +15,9 @@ const convertMillionToBillion = (num: number) => {
 };
 
 const Details = ({ details }: any) => {
+  if (!details.name) {
+    return null
+  }
   return (
     <Box>
       <ul

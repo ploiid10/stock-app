@@ -10,6 +10,9 @@ type OverviewProps = {
 }
 
 const Overview: React.FC<OverviewProps> = ({ symbol, price, change, changePercent, currency }) => {
+  if (!symbol) {
+    return null
+  }
   return (
     <Box>
       <span className="absolute left-4 top-4 text-neutral-400 text-lg xl:text-xl 2xl:text-2xl">

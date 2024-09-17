@@ -14,6 +14,7 @@ type SearchResult = {
 const Search = () => {
   const [value, setValue] = useState<string | null>('')
   const [matches, setchMatches] = useState<SearchResult[]>([]);
+  const [error, setError] = useState<string | null>(null)
   const pathname = usePathname()
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -50,6 +51,7 @@ const Search = () => {
         setchMatches(result as SearchResult[])
       } else {
         setchMatches([])
+        setError('No symbol found')
       }
     }
   }, [value, searchQuery])
@@ -92,6 +94,11 @@ const Search = () => {
             })}
           </ul>
       ) : null}
+      {error && (
+        <div className="text-rose-800">
+          {error}
+        </div>
+      )}
     </div>
   )
 }
