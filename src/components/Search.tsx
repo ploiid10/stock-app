@@ -1,8 +1,7 @@
 'use client'
 import { ChangeEvent, useCallback, useEffect, useState,useRef } from "react"
 import { CloseOutlined, SearchOutlined } from '@ant-design/icons'
-import { useQueryString } from "@/utils/hooks"
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { searchQuery } from "@/api/search"
 
 type SearchResult = {
@@ -17,13 +16,23 @@ const Search = () => {
   const [matches, setchMatches] = useState<SearchResult[]>([]);
   const pathname = usePathname()
   const router = useRouter()
-  const { createQueryString } = useQueryString()
+  const searchParams = useSearchParams()
   const clear = useCallback(() => {
     setValue('')
     setchMatches([])
   }, [value, matches])
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString())
+      params.set(name, value)
+
+      return params.toString()
+    },
+    [searchParams]
+  )
 
   const handleSetSymbol = useCallback((symbol: string) => {
+
     const queryString = createQueryString('symbol', symbol);
     clear()
     router.push(`${pathname}?${queryString.toString()}`)

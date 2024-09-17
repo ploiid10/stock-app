@@ -6,7 +6,7 @@ import Overview from "@/components/Overview";
 import { Quote, StockDetails } from "@/constants/types";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-
+import { Suspense } from 'react'
 export default function Home() {
   const searchParams = useSearchParams()
   const stockSymbol = useMemo(() => searchParams.get('symbol'), [searchParams])
