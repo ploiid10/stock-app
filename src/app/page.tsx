@@ -12,7 +12,8 @@ export default function Home() {
   const stockSymbol = useMemo(() => searchParams.get('symbol'), [searchParams])
   const [quote, setQuote] = useState<Quote>({} as Quote);
   const [stockDetails, setStockDetails] = useState<StockDetails>({} as StockDetails)
-  
+  const [stockError, setError] = useState<string | null>(null)
+
   // updates stock details when stock symbol changes via query params
   useEffect(() => {
     if (stockSymbol) {
@@ -20,9 +21,10 @@ export default function Home() {
         try {
           const result = await searchQuote(stockSymbol);
           setQuote(result as Quote);
+          setError(null)
         } catch (error) {
           setQuote({} as Quote);
-          console.error(error);
+          setError('Forbidden access - needs premium access')
         }
       };
   
@@ -30,9 +32,10 @@ export default function Home() {
         try {
           const result = await searchStockDetails(stockSymbol);
           setStockDetails(result as StockDetails);
+          setError(null)
         } catch (error) {
           setStockDetails({} as StockDetails);
-          console.error(error);
+          setError('Forbidden access - needs premium access')
         }
       };
       updateQuoute();
@@ -48,6 +51,11 @@ export default function Home() {
     >
       <div className="col-span-1 md:col-span-2 xl:col-span-3 row-span-1 flex justify-start items-center">
         <Header name={stockDetails?.name} />
+        {stockError && (
+          <div className="text-rose-800 ml-4">
+            {stockError}
+          </div>
+        )}
       </div>
       <div className="row-span-2 xl:row-span-3">
         <Details details={stockDetails}  />

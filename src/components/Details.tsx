@@ -15,28 +15,28 @@ const convertMillionToBillion = (num: number) => {
 };
 
 const Details = ({ details }: any) => {
-  if (!details.name) {
-    return null
-  }
   return (
+    details?.name && (
     <Box>
-      <ul
-        className="w-full h-full flex flex-col justify-between divide-y-1"
-      >
-        {Object.keys(detailsList).map((item) => {
-          return (
-            <li key={item} className="flex-1 flex justify-between items-center">
-              <span>{detailsList[item as  keyof typeof detailsList]}</span>
-              <span className="font-bold">
-                {item === "marketCapitalization"
-                  ? `${convertMillionToBillion(details[item])}B`
-                  : details[item]}
-              </span>
-            </li>
-          );
-        })}
-      </ul>
-    </Box>
+        <ul
+          className="w-full h-full flex flex-col justify-between divide-y-1"
+        >
+          {Object.keys(detailsList).map((item) => {
+            return (
+              <li key={item} className="flex-1 flex justify-between items-center">
+                <span>{detailsList[item as  keyof typeof detailsList]}</span>
+                <span className="font-bold">
+                  {item === "marketCapitalization"
+                    ? `${convertMillionToBillion(details[item])}B`
+                    : details[item]}
+                </span>
+              </li>
+            );
+          })}
+        </ul>
+      </Box>
+    )
+      
   );
 };
 

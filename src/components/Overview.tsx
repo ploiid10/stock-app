@@ -10,7 +10,7 @@ type OverviewProps = {
 }
 
 const Overview: React.FC<OverviewProps> = ({ symbol, price, change, changePercent, currency }) => {
-  if (!symbol) {
+  if (!price) {
     return null
   }
   return (
