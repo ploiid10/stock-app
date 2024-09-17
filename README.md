@@ -1,4 +1,7 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Setup
+- Add .env file
+- see .env.example for variables
+- to add api key, login/signup to [finnhub](https://finnhub.io) and go to dashboard to get api key to run the app
 
 ## Getting Started
 
